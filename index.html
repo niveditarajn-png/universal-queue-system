@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universal Queue Management System</title>
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Glow Background Elements -->
+    <div class="bg-glow-1"></div>
+    <div class="bg-glow-2"></div>
+    <div class="bg-glow-3"></div>
+
+    <!-- Navigation Header -->
+    <header>
+        <a href="#" class="logo">
+            <i class="fa-solid fa-users-line"></i>
+            <span>Q-Stream</span>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#live-demo" class="active">Live System</a></li>
+                <li><button class="btn-nav" id="btn-login-trigger">Sign In</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero / Landing Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <span class="preview-badge">Next-Gen Queue Management</span>
+                <h1>Eliminate Waiting Lines Digitally</h1>
+                <p>Welcome to Q-Stream, the premium universal queue management system designed to streamline customer experiences. Join queues, monitor live wait times, and receive dynamic notifications right on your phone.</p>
+                <div class="hero-ctas">
+                    <a href="#live-demo" class="btn-primary">
+                        <span>Get Started</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <a href="#features" class="btn-secondary">
+                        <span>Learn More</span>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="glass-panel glass-card-preview">
+                    <div class="live-indicator">Live Queue</div>
+                    <span class="preview-badge">Current Token Serving</span>
+                    <div class="ticket-number"># A-104</div>
+                    <div class="wait-info-grid">
+                        <div class="info-item">
+                            <div class="label">People Waiting</div>
+                            <div class="value">12</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="label">Est. Wait Time</div>
+                            <div class="value">8 mins</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" style="padding: 80px 0;">
+            <div class="section-title">
+                <h2>Engineered for Seamless Operations</h2>
+                <p>Explore the full suite of features configured to simplify queue handling for both service providers and clients.</p>
+            </div>
+            <div class="features-grid">
+                <div class="glass-panel feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-qrcode"></i></div>
+                    <h3>Digital Token Generation</h3>
+                    <p>Generate highly visible electronic queuing tokens containing live queue positions and customer-specific IDs.</p>
+                </div>
+                <div class="glass-panel feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                    <h3>Smart Time Prediction</h3>
+                    <p>Leverages processing speed metrics to calculate wait times, assuring optimal service expectations.</p>
+                </div>
+                <div class="glass-panel feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-bell"></i></div>
+                    <h3>Dynamic Alerts</h3>
+                    <p>Receive notifications when it is time to approach the counter or if unexpected queue delays occur.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Demo / Interactive Tabs (Customer & Admin views) -->
+        <section id="live-demo" style="padding-bottom: 80px;">
+            <div class="section-title">
+                <h2>Interactive Live System Mocks</h2>
+                <p>Switch between the Customer Dashboard and Admin Panel to see the system views in action.</p>
+            </div>
+
+            <div class="tab-container">
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="switchTab('customer-view')">Customer View</button>
+                    <button class="tab-btn" onclick="switchTab('admin-view')">Admin View</button>
+                </div>
+
+                <!-- Customer View Tab Content -->
+                <div id="customer-view" class="tab-content active">
+                    <div class="interactive-section">
+                        <!-- Join Queue / Form glass-panel -->
+                        <div class="glass-panel form-panel">
+                            <h3>Join Virtual Queue</h3>
+                            <form id="joinQueueForm" onsubmit="event.preventDefault(); simulateJoinQueue();">
+                                <div class="form-group">
+                                    <label for="cust-name">Full Name</label>
+                                    <input type="text" id="cust-name" class="form-input" placeholder="e.g., Jane Doe" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="service-type">Select Service Department</label>
+                                    <select id="service-type" class="form-input" style="background: rgba(10, 17, 40, 0.9);">
+                                        <option value="General Queries">General Queries (A)</option>
+                                        <option value="Billing & Support">Billing & Support (B)</option>
+                                        <option value="VIP Services">VIP Services (VIP)</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 10px;">
+                                    <i class="fa-solid fa-plus"></i> Join Queue & Get Token
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Live Status Card -->
+                        <div class="glass-panel form-panel" id="customer-status-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <h3>Your Generated Token</h3>
+                                <p style="color: var(--text-secondary); margin-bottom: 20px;">Present this digital token at the service counter.</p>
+                            </div>
+                            <div style="text-align: center;" id="token-placeholder">
+                                <i class="fa-solid fa-ticket-simple" style="font-size: 4rem; color: rgba(255,255,255,0.1); margin-bottom: 20px;"></i>
+                                <p style="color: var(--text-secondary);">Fill in the form to generate your digital token.</p>
+                            </div>
+                            <div id="token-active" style="display: none; text-align: center;">
+                                <span class="preview-badge" id="token-dept">General Queries</span>
+                                <div class="ticket-number" id="token-id"># A-105</div>
+                                <div class="wait-info-grid">
+                                    <div class="info-item">
+                                        <div class="label">Position</div>
+                                        <div class="value" id="token-pos">5th</div>
+                                    </div>
+                                    <div class="info-item">
+                                        <div class="label">Est. Wait</div>
+                                        <div class="value" id="token-wait">15 mins</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="font-size: 0.8rem; text-align: center; color: var(--text-secondary); border-top: 1px solid var(--glass-border); padding-top: 15px; margin-top: 15px;">
+                                Real-Time Sync Active
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Admin View Tab Content -->
+                <div id="admin-view" class="tab-content">
+                    <div class="glass-panel dashboard-mock">
+                        <!-- Sidebar -->
+                        <div class="db-sidebar" style="border-right: 1px solid var(--glass-border);">
+                            <div class="db-user-info">
+                                <div class="db-avatar">AD</div>
+                                <div>
+                                    <h4 style="font-size: 0.95rem;">System Admin</h4>
+                                    <p style="font-size: 0.75rem; color: var(--text-secondary);">Terminal Counter #1</p>
+                                </div>
+                            </div>
+                            <ul class="db-menu">
+                                <li class="db-menu-item active"><a href="#"><i class="fa-solid fa-chart-line"></i> Dashboard</a></li>
+                                <li class="db-menu-item"><a href="#history-table"><i class="fa-solid fa-history"></i> Queue History</a></li>
+                            </ul>
+                        </div>
+                        <!-- Main Panel content -->
+                        <div class="db-main">
+                            <div class="stats-grid">
+                                <div class="glass-panel stat-card">
+                                    <div class="stat-icon"><i class="fa-solid fa-user-clock"></i></div>
+                                    <div class="stat-details">
+                                        <h4>Serving Now</h4>
+                                        <div class="value">A-104</div>
+                                    </div>
+                                </div>
+                                <div class="glass-panel stat-card">
+                                    <div class="stat-icon"><i class="fa-solid fa-hourglass-half"></i></div>
+                                    <div class="stat-details">
+                                        <h4>Wait Queue</h4>
+                                        <div class="value">12 clients</div>
+                                    </div>
+                                </div>
+                                <div class="glass-panel stat-card">
+                                    <div class="stat-icon"><i class="fa-solid fa-circle-check"></i></div>
+                                    <div class="stat-details">
+                                        <h4>Completed</h4>
+                                        <div class="value">42</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Serving controls -->
+                            <div class="glass-panel" style="padding: 25px;">
+                                <h3 style="margin-bottom: 15px; font-size: 1.1rem; text-transform: uppercase; color: var(--accent-cyan);">Queue Operations Control</h3>
+                                <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                                    <button class="btn-primary" onclick="simulateAdminServe()">
+                                        <i class="fa-solid fa-forward-step"></i> Serve Next Ticket
+                                    </button>
+                                    <button class="btn-secondary" style="border-color: rgba(239, 68, 68, 0.4); color: #f87171;" onclick="simulateToast('Queue Paused', 'No incoming additions are currently allowed for general counters.')">
+                                        <i class="fa-solid fa-pause"></i> Pause Queue
+                                    </button>
+                                    <button class="btn-secondary" onclick="simulateToast('Broadcast Ping', 'Alert sent to waiting users to update screen positions.')">
+                                        <i class="fa-solid fa-tower-broadcast"></i> Notify Next 3
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Live queue table mock -->
+                            <div class="glass-panel table-panel" id="history-table">
+                                <h3 style="margin-bottom: 15px; font-size: 1rem;">Historical Log Queue List</h3>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Token ID</th>
+                                            <th>Customer Name</th>
+                                            <th>Department</th>
+                                            <th>Wait Duration</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="queue-log-body">
+                                        <tr>
+                                            <td># A-104</td>
+                                            <td>Johnathon Smith</td>
+                                            <td>General Queries</td>
+                                            <td>12 mins</td>
+                                            <td><span class="status-pill completed">Completed</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td># B-89</td>
+                                            <td>Samantha Miller</td>
+                                            <td>Billing & Support</td>
+                                            <td>24 mins</td>
+                                            <td><span class="status-pill completed">Completed</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td># VIP-03</td>
+                                            <td>David Henderson</td>
+                                            <td>VIP Services</td>
+                                            <td>4 mins</td>
+                                            <td><span class="status-pill pending">Pending</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Notification Toast Element -->
+    <div class="glass-panel notification-toast" id="system-toast" style="display: none;">
+        <div class="toast-icon">
+            <i class="fa-solid fa-bell"></i>
+        </div>
+        <div class="toast-content">
+            <h5 id="toast-title">Token Updated</h5>
+            <p id="toast-desc">Your queue position has advanced to 3rd. Keep watching.</p>
+        </div>
+        <button class="toast-close" onclick="closeToast()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Q-Stream Universal Queue Management. Crafted with premium Glassmorphism UI.</p>
+    </footer>
+
+    <!-- Interactive UI Switching and Mock Simulation Script -->
+    <script>
+        function switchTab(tabId) {
+            // Manage active buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            // Manage visible tab panel content
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        function simulateJoinQueue() {
+            const name = document.getElementById('cust-name').value;
+            const dept = document.getElementById('service-type').value;
+            
+            // Show Active Token View
+            document.getElementById('token-placeholder').style.display = 'none';
+            const activeToken = document.getElementById('token-active');
+            activeToken.style.display = 'block';
+            
+            // Update token fields
+            document.getElementById('token-dept').textContent = dept;
+            const randomId = Math.floor(Math.random() * 800) + 100;
+            const prefix = dept.includes('Billing') ? 'B' : (dept.includes('VIP') ? 'VIP' : 'A');
+            document.getElementById('token-id').textContent = `# ${prefix}-${randomId}`;
+            document.getElementById('token-pos').textContent = '4th in line';
+            document.getElementById('token-wait').textContent = '12 mins';
+
+            // Show Toast Alert
+            simulateToast('Queue Joined successfully', `Welcome ${name}! Your token has been generated under ${dept}.`);
+        }
+
+        function simulateAdminServe() {
+            // Append row dynamically
+            const tbody = document.getElementById('queue-log-body');
+            const randomVal = Math.floor(Math.random() * 800) + 100;
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td># A-${randomVal}</td>
+                <td>Simulated User</td>
+                <td>General Queries</td>
+                <td>10 mins</td>
+                <td><span class="status-pill completed">Completed</span></td>
+            `;
+            tbody.insertBefore(newRow, tbody.firstChild);
+
+            simulateToast('Next Customer Summoned', 'Token A-105 has been marked serving at Terminal Counter 1.');
+        }
+
+        function simulateToast(title, description) {
+            const toast = document.getElementById('system-toast');
+            document.getElementById('toast-title').textContent = title;
+            document.getElementById('toast-desc').textContent = description;
+            toast.style.display = 'flex';
+
+            // Self-hide after 5 seconds
+            setTimeout(() => {
+                closeToast();
+            }, 5000);
+        }
+
+        function closeToast() {
+            document.getElementById('system-toast').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
