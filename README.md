@@ -1,32 +1,52 @@
-# universal-queue-system
-It is a web application that digitizes traditional waiting lines by providing digital token generation, real-time queue tracking, estimated waiting times, and admin dashboards. It improves service efficiency, reduces crowding, and enhances the user experience across hospitals, banks, restaurants and other service organizations.
 # Universal Queue Management System
 
-## Overview
-A web application that digitizes traditional waiting lines...
+A web-based queue management system designed to digitize traditional waiting lines and improve customer service efficiency.
 
-## Features
-- Digital Token Generation
-- Real-time Queue Tracking
-- Estimated Waiting Time
-- Admin Dashboard
-- Customer Dashboard
-- Responsive UI
+## 📌 Project Overview
 
-## Technologies Used
-- Python (Flask)
+The Universal Queue Management System allows users to join a queue digitally, receive a token, track their queue position and view estimated waiting time. Administrators can monitor and manage the queue through the system.
+
+The solution can be adapted for hospitals, banks, restaurants, salons, government offices, educational institutions and other service-based organizations.
+
+## 🎯 Objectives
+
+- Digitize traditional queue management
+- Generate digital tokens
+- Track customer queue positions
+- Provide estimated waiting time
+- Reduce physical overcrowding
+- Improve customer convenience
+- Simplify queue administration
+
+## 🚀 Features
+
+- Digital token generation
+- Queue tracking
+- Estimated waiting time
+- Queue management
+- Customer interface
+- Admin functionality
+- SQLite database integration
+- Responsive web interface
+
+## 🛠️ Technologies Used
+
+- Python
+- Flask
 - HTML
 - CSS
 - SQLite
+- Git
+- GitHub
 
-## Installation
-1. Clone the repository
-2. Install requirements
-3. Run app.py
+## 📂 Project Structure
 
-## Screenshots
-
-## Future Enhancements
-
-## Author
-Niveditha
+```text
+universal-queue-system/
+├── app.py
+├── init_db.py
+├── schema.sql
+├── requirements.txt
+├── templates/
+├── static/
+└── docs/
